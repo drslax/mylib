@@ -5,29 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aelouarg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/31 12:28:38 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/09/01 23:10:55 by aelouarg         ###   ########.fr       */
+/*   Created: 2019/05/10 05:30:06 by aelouarg          #+#    #+#             */
+/*   Updated: 2019/05/10 05:30:08 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strrev(char *str)
 {
+	char	tmp;
 	int		i;
 	int		j;
-	char	c;
+	int		n;
 
 	i = 0;
-	j = 0;
-	while (str[i] != '\0')
+	while (*(str + i) != '\0')
 		i++;
-	i--;
-	while (j < i)
+	j = 0;
+	n = i - 1;
+	while (j < n)
 	{
-		c = str[j];
-		str[j] = str[i];
-		str[i] = c;
+		tmp = *(str + j);
+		*(str + j) = *(str + n);
+		*(str + n) = tmp;
 		j++;
-		i--;
+		n--;
 	}
 	return (str);
 }

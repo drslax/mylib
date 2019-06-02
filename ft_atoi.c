@@ -3,47 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/11 01:40:29 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/11 22:21:30 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/15 12:25:41 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/17 22:42:19 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	long_verif(unsigned long long int a, int sign)
-{
-	if (sign == -1 && (a - 1) > 9223372036854775807)
-		return (0);
-	if (sign == 1 && a > 9223372036854775807)
-		return (-1);
-	return ((int)(a * sign));
-}
+#include "libft.h"
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int						i;
-	unsigned long long int	a;
-	int						sign;
+	int number;
+	int n;
 
-	i = 0;
-	a = 0;
-	sign = 1;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
-			|| str[i] == '\f' || str[i] == '\r' || str[i] == '\v')
-		i++;
-	if (str[i] == '+' || str[i] == '-')
+	n = 0;
+	number = 0;
+	while (*str == ' ' || *str == '\t' || *str == '\n' ||
+	*str == '\v' || *str == '\f' || *str == '\r')
+		str++;
+	if (*str == '-')
 	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
+		n = 1;
+		str++;
 	}
-	while (str[i] != '\0')
+	else if (*str == '+')
+		str++;
+	while ((*str >= '0' && *str <= '9') && *str != '\0')
 	{
-		if (str[i] > 47 && str[i] < 58)
-			a = (a * 10) + (str[i] - 48);
-		else
-			break ;
-		i++;
+		number = number * 10 + (*str - '0');
+		str++;
 	}
-	return (long_verif(a, sign));
+	if (n == 1)
+		return (-number);
+	return (number);
 }

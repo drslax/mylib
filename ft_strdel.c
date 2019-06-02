@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/09 23:25:14 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/09 23:28:51 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/11 15:14:24 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/17 16:12:21 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 void	ft_strdel(char **as)
 {
-	if (as)
+	if (as != NULL)
 	{
-		if (*as)
-		{
-			free(*as);
-			*as = NULL;
-		}
+		free(*as);
+		*as = NULL;
 	}
 }

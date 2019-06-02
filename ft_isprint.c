@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/07 13:33:03 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/09 15:28:31 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/08 19:24:58 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/21 04:11:07 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isprint(int c)
+#include "libft.h"
+
+int	ft_isprint(int c)
 {
-	if (c >= 32 && c < 127)
-		return (1);
-	return (0);
+	if (c < 32 || c >= 127)
+		return (0);
+	return (1);
 }

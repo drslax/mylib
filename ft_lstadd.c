@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/11 16:33:06 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/11 16:36:27 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/19 18:36:55 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/19 19:18:04 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	ft_lstadd(t_list **alst, t_list *new)
 {
-	if (!alst || !new)
-		return ;
-	new->next = *alst;
-	*alst = new;
+	new->next = (*alst);
+	(*alst) = new;
 }

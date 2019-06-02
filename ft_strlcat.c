@@ -3,36 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/08 06:32:45 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/08 06:35:03 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/09/10 15:54:31 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/18 14:04:50 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
-{
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	res;
+#include "libft.h"
 
-	i = 0;
-	while (dest[i] != '\0')
-		++i;
-	res = 0;
-	while (src[res] != '\0')
-		++res;
-	if (size <= i)
-		res += size;
-	else
-		res += i;
-	j = 0;
-	while (src[j] != '\0' && i + 1 < size)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
+{
+	size_t	count_dest;
+	size_t	count_src;
+
+	count_dest = 0;
+	count_src = ft_strlen(src);
+	while (*dst != 0 && size > 0)
 	{
-		dest[i] = src[j];
-		i++;
-		j++;
+		dst++;
+		count_dest++;
+		size--;
 	}
-	dest[i] = '\0';
-	return (res);
+	while (*src != 0 && size > 1)
+	{
+		size--;
+		*dst++ = *src++;
+	}
+	while (*src == '\0' && size > 1)
+	{
+		size--;
+		*dst++ = '\0';
+	}
+	if (size == 1)
+		*dst = '\0';
+	return (count_src + count_dest);
 }

@@ -3,31 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/08 05:30:02 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/08 06:10:07 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/08 19:59:09 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/11 23:37:41 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strrchr(const char *str, int c)
-{
-	const char	*pt;
+#include "libft.h"
 
-	pt = str;
-	if (c == '\0')
+char	*ft_strrchr(const char *s, int c)
+{
+	int		i;
+	int		location;
+	char	*string;
+
+	location = -1;
+	string = (char *)s;
+	i = 0;
+	while (string[i] != '\0')
 	{
-		while (*pt)
-			pt++;
-		return ((char *)pt);
+		if (string[i] == c)
+			location = i;
+		i++;
 	}
-	while (*str)
-	{
-		if (*str == (const char)c)
-			pt = str;
-		str++;
-	}
-	if (*pt == (const char)c)
-		return ((char *)pt);
-	return (0);
+	if (location != -1)
+		return (string + location);
+	if (string[i] == c)
+		return (string + i);
+	return (NULL);
 }

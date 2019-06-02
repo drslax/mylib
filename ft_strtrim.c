@@ -3,33 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/10 04:55:20 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/10 05:49:39 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/12 16:28:37 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/22 15:01:57 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#define HASSPACES(X) (((X) == ' ' || (X) == '\n' || (X) == '\t') ? 1 : 0)
 
 char	*ft_strtrim(char const *s)
 {
-	size_t	i;
-	size_t	j;
-	size_t	len;
-	char	*pt;
+	char	*string;
+	size_t	end;
+	size_t	start;
 
-	if (!s)
-		return (0);
-	len = ft_strlen(s);
-	i = 0;
-	while (s[i] && (s[i] == ' ' || s[i] == '\n' || s[i] == '\t'))
-		i++;
-	if (!s[i])
-		return (ft_strnew(0));
-	j = len - 1;
-	while (j < len && (s[j] == ' ' || s[j] == '\n' || s[j] == '\t'))
-		j--;
-	pt = ft_strsub(s, i, j - i + 1);
-	return (pt);
+	if (s == NULL)
+		return (NULL);
+	start = 0;
+	end = ft_strlen(s) - 1;
+	while (HASSPACES(s[start]))
+		start++;
+	if (start == end + 1)
+	{
+		if (!(string = (char *)malloc(sizeof(char) * 1)))
+			return (NULL);
+		string[0] = '\0';
+		return (string);
+	}
+	while (HASSPACES(s[end]))
+		end--;
+	if ((string = (char *)malloc(sizeof(char) * (end - start) + 2)))
+	{
+		string = ft_strsub(s, start, end - start + 1);
+		return (string);
+	}
+	return (NULL);
 }

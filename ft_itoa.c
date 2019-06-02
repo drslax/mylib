@@ -3,70 +3,77 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/10 08:10:09 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/11 23:14:06 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/15 12:01:31 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/20 23:34:19 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	void	ft_minus(char **tab, int *nbr, int *decl)
+static	char	*ft_strrevsign(int n, char *str)
 {
-	if (*nbr < 0)
+	char	temp;
+	int		i;
+	int		counter;
+
+	i = 0;
+	counter = 0;
+	while (str[counter] != '\0')
+		counter++;
+	if (n == 1)
+		str[counter] = '-';
+	else
+		counter--;
+	while (counter > i)
 	{
-		*tab[0] = '-';
-		*nbr = -(*nbr);
-		*decl = 1;
+		temp = str[i];
+		str[i] = str[counter];
+		str[counter] = temp;
+		counter--;
+		i++;
+	}
+	return (str);
+}
+
+static	char	*ft_putnbritoa(int n, char *result)
+{
+	unsigned int	nb;
+
+	nb = n;
+	if (nb >= 10)
+	{
+		ft_putnbritoa(nb / 10, result + 1);
+		ft_putnbritoa(nb % 10, result);
 	}
 	else
-		*decl = 0;
+		*result = nb + '0';
+	return (result);
 }
 
-static	char	*ft_alloc(int n)
+char			*ft_itoa(int n)
 {
-	int		i;
-	char	*tab;
+	int		negative;
+	char	*result;
+	int		nbr;
+	int		size;
 
-	i = 1;
-	tab = NULL;
+	nbr = n;
+	size = 1;
+	while (nbr /= 10)
+		size++;
+	negative = 0;
 	if (n < 0)
 	{
-		n = -n;
-		i++;
+		n = n * -1;
+		negative = 1;
 	}
-	while ((n = n / 10) >= 1)
-		i++;
-	i++;
-	tab = (char*)malloc(sizeof(char) * i);
-	return (tab);
-}
-
-char			*ft_itoa(int nb)
-{
-	int		i;
-	int		j;
-	int		dec;
-	char	*tab;
-
-	if (nb == -2147483648)
-		return (ft_strdup("-2147483648"));
-	tab = ft_alloc(nb);
-	if (tab == NULL)
-		return (NULL);
-	ft_minus(&tab, &nb, &dec);
-	j = nb;
-	i = 1;
-	while ((j = j / 10) >= 1)
-		i *= 10;
-	while (i >= 1)
+	if ((result = (char*)malloc(sizeof(char) * ((size + negative) + 1))))
 	{
-		tab[dec] = ((nb / i) + 48);
-		nb %= i;
-		i /= 10;
-		dec++;
+		ft_bzero(result, ((size + negative) + 1));
+		result = ft_putnbritoa(n, result);
+		return (ft_strrevsign(negative, result));
 	}
-	tab[dec] = '\0';
-	return (tab);
+	return (NULL);
 }

@@ -3,98 +3,94 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/10 08:10:49 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/12 01:51:48 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/12 21:17:39 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/19 23:32:30 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int		ft_not_c(char ch, char c)
+static	int		ft_wordlenth(const char *str, char c)
 {
-	int		i;
+	int counter;
 
-	i = 0;
-	if (ch == c)
-		return (0);
-	return (1);
+	counter = 0;
+	while (str[counter] != c && str[counter] != '\0')
+		counter++;
+	return (counter);
 }
 
-static	int		ft_count_w(const char *str, char c)
+static	int		ft_words_count(const char *str, char c)
 {
 	int		i;
-	int		j;
-	int		n;
+	int		count;
+	int		new_word;
 
+	new_word = 1;
+	count = 0;
 	i = 0;
-	j = 0;
-	n = 0;
-	while (str[i] != '\0')
+	while (str[i])
 	{
-		if (ft_not_c(str[i], c) == 0)
+		if ((str[i] != c) && new_word == 1)
 		{
-			if (j == 1)
-				j = 0;
+			count++;
+			new_word = 0;
 		}
-		if (ft_not_c(str[i], c) == 1)
-			if (j == 0)
-			{
-				n++;
-				j = 1;
-			}
+		else if (str[i] == c)
+			new_word = 1;
 		i++;
 	}
-	return (n);
+	return (count);
 }
 
-static	int		ft_size_w(const char *str, int ind, char c)
+static	char	*wordtotable(const char **s, char c, size_t *i)
 {
-	int		i;
+	char *string;
 
-	i = ind;
-	while (ft_not_c(str[i], c) == 1 && str[i])
-		i++;
-	return (i - ind);
-}
-
-static	int		ft_position(const char *str, int *pt, char c)
-{
-	while (str[*pt])
+	if ((string = (char *)malloc(sizeof(char)
+					* (ft_wordlenth(*s, c) + 1))))
 	{
-		if (ft_not_c(str[*pt], c) == 1)
-			break ;
-		(*pt)++;
+		while (**s != c && **s != '\0')
+		{
+			string[*i] = **s;
+			(*s)++;
+			(*i)++;
+		}
+		string[*i] = '\0';
+		return (string);
 	}
-	return (0);
-}
-
-char			**ft_strsplit(char const *str, char c)
-{
-	int		t[3];
-	int		pt[1];
-	char	**table;
-
-	if (str == NULL)
+	else
+	{
 		return (NULL);
-	t[0] = 0;
-	*pt = 0;
-	table = (char**)malloc((ft_count_w(str, c) + 1) * sizeof(char*));
-	if (table)
-	{
-		while (t[0] < ft_count_w(str, c))
-		{
-			t[1] = 0;
-			ft_position(str, pt, c);
-			t[2] = ft_size_w(str, *pt, c);
-			table[t[0]] = (char*)malloc((t[2] + 1) * sizeof(char));
-			while (t[1] < t[2])
-				table[t[0]][t[1]++] = str[(*pt)++];
-			table[t[0]][t[1]] = '\0';
-			t[0]++;
-		}
-		table[t[0]] = 0;
 	}
+}
+
+char			**ft_strsplit(char const *s, char c)
+{
+	char	**table;
+	size_t	j;
+	size_t	i;
+
+	if (s == NULL)
+		return (NULL);
+	j = 0;
+	if (!(table = (char **)malloc(sizeof(char *) * (ft_words_count(s, c) + 1))))
+		return (NULL);
+	while (*s != '\0')
+	{
+		i = 0;
+		while (*s == c && *s != '\0')
+			s++;
+		if (*s == '\0')
+			break ;
+		if (*s != c && *s != '\0')
+		{
+			table[j] = wordtotable(&s, c, &i);
+		}
+		j++;
+	}
+	table[j] = 0;
 	return (table);
 }

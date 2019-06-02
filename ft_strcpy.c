@@ -3,23 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/08 06:36:02 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/08 06:36:41 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/09/05 18:47:23 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/17 19:25:16 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dest, char *src)
-{
-	int		l;
+#include "libft.h"
 
-	l = 0;
-	while (src[l] != '\0')
+char	*ft_strcpy(char *dst, const char *src)
+{
+	int		i;
+
+	i = 0;
+	while (src[i] != '\0')
 	{
-		dest[l] = src[l];
-		l++;
+		dst[i] = src[i];
+		i++;
 	}
-	dest[l] = '\0';
-	return (dest);
+	dst[i] = '\0';
+	return (dst);
 }

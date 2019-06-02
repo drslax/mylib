@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/09 22:06:50 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/09 22:35:13 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/10 15:48:43 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/19 22:21:20 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void	ft_memdel(void **ap)
 {
-	if (ap)
+	unsigned char **pointer;
+
+	if (ap == NULL)
+		return ;
+	pointer = (unsigned char **)ap;
+	if (*pointer != NULL)
 	{
-		if (*ap)
-		{
-			free(*ap);
-			*ap = NULL;
-		}
+		free(*pointer);
+		*pointer = NULL;
 	}
 }

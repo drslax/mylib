@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcapitalize.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/11 22:42:14 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/11 22:42:34 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/09/06 02:11:39 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/20 23:15:00 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,27 @@
 
 char	*ft_strcapitalize(char *str)
 {
-	int		i;
+	int i;
+	int notcapitalized;
 
 	i = 0;
-	ft_strlowcase(str);
+	notcapitalized = 1;
 	while (str[i] != '\0')
 	{
-		if (str[0] >= 'a' && str[0] <= 'z')
+		if (str[i] >= 'a' && str[i] <= 'z' && notcapitalized == 1)
 		{
-			str[0] -= 32;
-			i++;
+			str[i] = str[i] - 32;
+			notcapitalized = 0;
 		}
-		if (str[i] >= 'a' && str[i] <= 'z')
+		else if ((str[i] >= 'A' && str[i] <= 'Z') && notcapitalized == 0)
 		{
-			if (str[i - 1] < 48 || str[i - 1] > 122)
-				str[i] -= 32;
-			if (str[i - 1] > 57 && str[i - 1] < 65)
-				str[i] -= 32;
-			if (str[i - 1] > 90 && str[i - 1] < 97)
-				str[i] -= 32;
+			str[i] = str[i] + 32;
 		}
+		else if (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
+		|| str[i] == '+' || str[i] == '-')
+			notcapitalized = 1;
+		else
+			notcapitalized = 0;
 		i++;
 	}
 	return (str);

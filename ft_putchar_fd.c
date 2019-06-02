@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/10 06:18:17 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/11 15:54:24 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/11 23:03:05 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/15 12:32:04 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_putchar_fd(char c, int fd)
 {
 	if (fd != -1)
-	{
 		write(fd, &c, 1);
-	}
+	else
+		return ;
 }

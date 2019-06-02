@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/08 22:16:22 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/09 22:20:11 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/06 18:32:42 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/21 18:24:58 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	unsigned char	*str1;
-	unsigned char	*str2;
+	size_t				i;
+	unsigned	char	*destination;
+	unsigned	char	*source;
 
-	str1 = (unsigned char*)src;
-	str2 = (unsigned char*)dst;
-	while (n > 0)
+	i = 0;
+	destination = (unsigned	char *)dst;
+	source = (unsigned	char *)src;
+	while (i < n)
 	{
-		if (*str1 == (unsigned char)c)
+		destination[i] = source[i];
+		if (source[i] == (unsigned char)c)
 		{
-			*str2 = (unsigned char)c;
-			str2++;
-			return (str2);
+			destination[i] = source[i];
+			i++;
+			return ((void*)destination + i);
 		}
-		*str2 = *str1;
-		str1++;
-		str2++;
-		n--;
+		i++;
 	}
 	return (NULL);
 }

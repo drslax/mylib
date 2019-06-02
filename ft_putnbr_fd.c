@@ -3,39 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/10 06:27:18 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/10 06:30:55 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/12 16:23:32 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/15 13:17:13 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int nb, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int		tmp_n;
-	int		compt;
+	unsigned int	nbr;
 
-	if (nb < 0)
+	if (fd != -1)
 	{
-		ft_putchar_fd('-', fd);
-		if (nb == -2147483648)
+		if (n < 0)
 		{
-			ft_putchar_fd(50, fd);
-			nb = 147483648;
+			n = n * -1;
+			nbr = n;
+			ft_putchar_fd('-', fd);
 		}
 		else
-			nb = -nb;
+			nbr = n;
+		if (nbr >= 10)
+		{
+			ft_putnbr_fd(nbr / 10, fd);
+			ft_putnbr_fd(nbr % 10, fd);
+		}
+		else
+		{
+			ft_putchar_fd(nbr + '0', fd);
+		}
 	}
-	compt = 1;
-	tmp_n = nb;
-	while ((tmp_n /= 10) >= 1)
-		compt *= 10;
-	while (compt >= 1)
-	{
-		ft_putchar_fd((nb / compt) + 48, fd);
-		nb %= compt;
-		compt /= 10;
-	}
+	else
+		return ;
 }

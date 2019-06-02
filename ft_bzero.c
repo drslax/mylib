@@ -3,28 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/08 21:50:11 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/09 15:28:13 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/05 18:44:52 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/10 22:45:37 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t			i;
-	unsigned char	*pt;
-	int				c;
+	size_t	i;
+	char	*str;
 
-	c = 0;
-	pt = (unsigned char *)s;
+	str = (char *)s;
 	i = 0;
 	while (i < n)
 	{
-		pt[i] = (unsigned char)c;
+		str[i] = 0;
 		i++;
 	}
-	s = (void *)pt;
+	s = (void *)str;
 }

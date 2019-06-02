@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/08 23:01:44 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/12 01:03:36 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/06 19:01:04 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/21 20:42:09 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	void	*str;
+	char		*temp;
+	char		*destination;
+	const char	*source;
 
-	str = ft_memalloc(len);
-	if (str == NULL)
-		return (dst);
-	ft_memcpy(str, src, len);
-	ft_memcpy(dst, str, len);
+	destination = (char *)dst;
+	source = (const char *)src;
+	temp = (char *)malloc(sizeof(char) * len);
+	ft_memcpy(temp, source, len);
+	ft_memcpy(destination, temp, len);
+	free(temp);
 	return (dst);
 }

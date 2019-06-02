@@ -3,34 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/08 06:39:33 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/09 15:33:23 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/03 15:24:47 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/21 04:56:43 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-char	*ft_strdup(const char *src)
+char	*ft_strdup(const char *s1)
 {
-	char	*dup;
-	int		i;
-	int		len_src;
+	char	*dest;
+	size_t	lengthsrc;
+	size_t	i;
 
-	i = 0;
-	len_src = 0;
-	while (src[len_src] != '\0')
-		len_src++;
-	if (!(dup = (char*)malloc(sizeof(*src) * (len_src + 1))))
-		return (NULL);
-	if (dup == 0)
-		return (0);
-	while (i < len_src)
+	lengthsrc = ft_strlen(s1);
+	if ((dest = (char *)malloc(sizeof(char) * (lengthsrc + 1))))
 	{
-		dup[i] = src[i];
-		i++;
+		i = 0;
+		while (s1[i] != 0 && i < lengthsrc)
+		{
+			dest[i] = (char)s1[i];
+			i++;
+		}
+		dest[i] = '\0';
+		return (dest);
 	}
-	dup[i] = '\0';
-	return (dup);
+	return (NULL);
 }

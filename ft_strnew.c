@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/09 22:35:43 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/09 23:18:58 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/10 16:27:18 by aelouarg          #+#    #+#             */
+/*   Updated: 2019/05/10 05:31:13 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,12 @@
 
 char	*ft_strnew(size_t size)
 {
-	char	*pt;
-	size_t	i;
+	char	*pointer;
 
-	i = 0;
-	if (!(pt = (char *)malloc(sizeof(char) * (size + 1))))
-		return (NULL);
-	while (i < size)
+	if ((pointer = malloc(size + 1)))
 	{
-		pt[i] = '\0';
-		i++;
+		ft_memset(pointer, '\0', size + 1);
+		return (pointer);
 	}
-	pt[i] = '\0';
-	return (pt);
+	return (NULL);
 }

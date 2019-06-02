@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strequ.c                                        :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/10 00:39:15 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/10 01:01:45 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/11 17:14:08 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/20 16:02:51 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strnequ(char const *s1, char const *s2, size_t n)
+int	ft_strnequ(char const *s1, char	const *s2, size_t n)
 {
-	size_t			i;
-	unsigned char	*st1;
-	unsigned char	*st2;
+	size_t				i;
+	unsigned	char	*string1;
+	unsigned	char	*string2;
 
-	if (!s1 || !s2)
+	if (s1 == NULL || s2 == NULL)
 		return (0);
+	string1 = (unsigned char *)s1;
+	string2 = (unsigned char *)s2;
 	i = 0;
-	st1 = (unsigned char *)s1;
-	st2 = (unsigned char *)s2;
-	while ((st1[i] || st2[i]) && i < n)
+	while (i < n)
 	{
-		if (st1[i] != st2[i])
+		if (string1[i] != string2[i])
 			return (0);
 		i++;
 	}

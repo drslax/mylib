@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/09 23:45:49 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/09 23:54:35 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/11 16:49:31 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/21 18:09:40 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	unsigned int	i;
+	size_t	i;
 
 	i = 0;
-	if (!s || !f)
+	if (s == NULL || f == NULL)
 		return ;
-	while (s[i])
+	while (s[i] != '\0')
 	{
 		f(i, &s[i]);
 		i++;

@@ -3,38 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/08 03:46:35 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/09 15:37:50 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/09/05 19:00:47 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/21 04:57:13 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 char	*ft_strstr(const char *haystack, const char *needle)
 {
-	int		i;
-	int		j;
-	char	*pt;
+	size_t i;
+	size_t j;
+	size_t count;
+	size_t count2;
 
 	i = 0;
-	pt = 0;
+	j = 0;
+	count = ft_strlen(needle);
 	if (needle[i] == '\0')
 		return ((char *)haystack);
-	while (haystack[i])
+	while (haystack[i] != '\0')
 	{
-		if (haystack[i] == needle[0])
+		j = 0;
+		count2 = 0;
+		while (needle[j] != '\0')
 		{
-			pt = (char *)haystack + i;
-			j = 0;
-			while (haystack[i + j] == needle[j])
-			{
-				if (needle[j + 1] == '\0')
-					return (pt);
-				j++;
-			}
-			pt = 0;
+			if (haystack[i + j] == needle[j])
+				count2++;
+			if (count == count2)
+				return ((char *)haystack + i);
+			j++;
 		}
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

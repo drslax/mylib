@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isblank.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/10 08:26:29 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/10 08:40:21 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/21 01:51:49 by aelouarg          #+#    #+#             */
+/*   Updated: 2018/10/21 01:59:55 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isblank(int c)
+#include "libft.h"
+
+int		ft_isblank(int c)
 {
-	return (c == '\t' || c == ' ');
+	if (c == ' ' || c == '\t')
+		return (1);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelouarg <anas.elouargui@gmail.com>        +#+  +:+       +#+        */
+/*   By: aelouarg <aelouarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/10 01:02:29 by aelouarg          #+#    #+#             */
-/*   Updated: 2018/10/10 04:32:26 by aelouarg         ###   ########.fr       */
+/*   Created: 2018/10/11 17:29:28 by aelouarg          #+#    #+#             */
+/*   Updated: 2019/05/19 23:46:41 by aelouarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,27 @@
 
 char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	size_t		i;
-	char		*pt;
+	char	*string;
+	size_t	i;
 
-	i = start;
-	if (!s)
+	if (s == NULL)
 		return (NULL);
-	if (!(pt = (char *)malloc(sizeof(char) * (len + 1))))
-		return (NULL);
-	while (s[i] && i - start < len)
+	i = 0;
+	if ((string = (char *)malloc(sizeof(char) * (len + 1))))
 	{
-		pt[i - start] = s[i];
-		i++;
+		while (s[i] != '\0' && i < len)
+		{
+			string[i] = s[start];
+			start++;
+			i++;
+		}
+		while (i < len)
+		{
+			string[i] = '\0';
+			i++;
+		}
+		string[i] = '\0';
+		return (string);
 	}
-	pt[i - start] = '\0';
-	return (pt);
+	return (NULL);
 }
